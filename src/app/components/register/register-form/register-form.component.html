@@ -1,0 +1,123 @@
+<form (ngSubmit)="register()" class="bg-slate-800 p-10 rounded-md max-w-[30vw]">
+  <div class="text-[#ccc] text-2xl font-bold mb-5">
+    <h2>Registration Form</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        [(ngModel)]="payload.first_name"
+        type="text"
+        name="floating_first_name"
+        id="floating_first_name"
+        class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      />
+      <label
+        for="floating_first_name"
+        class="peer-focus:font-medium absolute text-sm text-gray-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >First name</label
+      >
+      <small class="text-red-500" *ngIf="firstNameErr()">{{
+        firstNameErr()
+      }}</small>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+      <input
+        [(ngModel)]="payload.last_name"
+        type="text"
+        name="floating_last_name"
+        id="floating_last_name"
+        class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      />
+      <label
+        for="floating_last_name"
+        class="peer-focus:font-medium absolute text-sm text-gray-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Last name</label
+      >
+      <small class="text-red-500" *ngIf="lastNameErr()">{{
+        lastNameErr()
+      }}</small>
+    </div>
+  </div>
+
+  <div class="relative z-0 w-full mb-5 group">
+    <input
+      [(ngModel)]="payload.email"
+      type="email"
+      name="floating_email"
+      id="floating_email"
+      class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    />
+    <label
+      for="floating_email"
+      class="peer-focus:font-medium absolute text-sm text-gray-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >Email address</label
+    >
+    <small class="text-red-500" *ngIf="emailErr()">{{ emailErr() }}</small>
+  </div>
+
+  <div class="relative z-0 w-full mb-5 group">
+    <input
+      [(ngModel)]="payload.password"
+      [type]="is_passwordVisible() ? 'text' : 'password'"
+      name="floating_password"
+      id="floating_password"
+      class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    />
+    <label
+      for="floating_password"
+      class="peer-focus:font-medium absolute text-sm text-gray-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >Password</label
+    >
+    <small class="text-red-500" *ngIf="passwordErr()">{{
+      passwordErr()
+    }}</small>
+    <mat-icon
+      (click)="toggleVisibility()"
+      class="absolute right-0 top-1/2 -translate-y-1/2 text-[#ccc] text-[1.2rem] cursor-pointer"
+      >{{ is_passwordVisible() ? "visibility" : "visibility_off" }}</mat-icon
+    >
+  </div>
+
+  <div class="relative z-0 w-full mb-5 group">
+    <input
+      [(ngModel)]="payload.password_confirmation"
+      type="password"
+      [type]="is_ConfirmationVisible() ? 'text' : 'password'"
+      name="repeat_password"
+      id="floating_repeat_password"
+      class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    />
+    <label
+      for="floating_repeat_password"
+      class="peer-focus:font-medium absolute text-sm text-gray-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      >Confirm password</label
+    >
+    <small class="text-red-500" *ngIf="passwordConfirmationErr()">{{
+      passwordConfirmationErr()
+    }}</small>
+    <mat-icon
+      (click)="toggle()"
+      class="absolute right-0 top-1/2 -translate-y-1/2 text-[#ccc] text-[1.2rem] cursor-pointer"
+      >{{
+        is_ConfirmationVisible() ? "visibility" : "visibility_off"
+      }}</mat-icon
+    >
+  </div>
+
+  <small class="text-[#ccc] block mt-2 mb-5 text-[0.92rem]">
+    Already have an account?
+    <span
+      class="text-blue-700 hover:underline cursor-pointer font-semibold"
+      routerLink="/login"
+      >Login</span
+    ></small
+  >
+
+  <button
+    type="submit"
+    class="text-[#ccc] bg-blue-700 py-2 px-4 rounded-md font-bold hover:bg-blue-800"
+  >
+    Sign up
+  </button>
+</form>
