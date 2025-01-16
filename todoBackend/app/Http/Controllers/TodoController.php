@@ -43,32 +43,49 @@ class TodoController
     /**
      * Display the specified resource.
      */
-    public function show(Todo $todo)
+    public function show($id)
     {
-        return $todo;
+        $todo = Todo::where('user_id',Auth::id())->findOrFail($id);
+
+        return response()->json([
+            'todo'=>$todo
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Todo $todo)
+    public function edit(UpdateTodoRequest $request, $id)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTodoRequest $request, Todo $todo)
+    public function update(UpdateTodoRequest $request, $id)
     {
-        //
+        $todo = Todo::where('user_id',Auth::id())->findOrFail($id);
+
+       $todo->update(
+            $request->only(['title', 'description', 'is_completed'])
+        );
+
+        return response()->json([
+            'todo' => $todo
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Todo $todo)
+    public function destroy($id)
     {
-        //
+        $todo = Todo::where('user_id',Auth::id())->findOrFail($id);
+        $todo->delete();
+
+        return response()->json([
+            'message'=> 'Todo deleted'
+        ]);
     }
 }
