@@ -10,9 +10,7 @@ import { SharedService } from '../../../core/services/shared/shared.service';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterPayload } from '../../../core/model/class/Auth.class';
-
 import { FormsModule } from '@angular/forms';
-
 import { ValidationError } from '../../../core/model/interface/Validation.interface';
 import { NgIf } from '@angular/common';
 
