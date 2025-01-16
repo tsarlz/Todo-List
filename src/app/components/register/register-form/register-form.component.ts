@@ -1,4 +1,3 @@
-import { AuthService } from './../../../core/services/auth/auth.service';
 import {
   Component,
   inject,
@@ -8,12 +7,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { SharedService } from '../../../core/services/shared/shared.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterPayload } from '../../../core/model/class/Auth.class';
-import { AuthResponse } from '../../../core/model/interface/Auth.interface';
+
 import { FormsModule } from '@angular/forms';
-import { LocalData } from '../../../core/constant';
+
 import { ValidationError } from '../../../core/model/interface/Validation.interface';
 import { NgIf } from '@angular/common';
 
