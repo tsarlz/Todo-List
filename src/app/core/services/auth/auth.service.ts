@@ -15,7 +15,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(ApiEndpoint.Auth.register, obj);
   }
 
-  login(): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(ApiEndpoint.Auth.login, LoginPayload);
+  login(obj: LoginPayload): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(ApiEndpoint.Auth.login, obj);
   }
 }

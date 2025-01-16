@@ -28,8 +28,8 @@ class RegisterRequest extends FormRequest
             'password' => [
             'required',
             'string',
-          /*   'min:8', // Minimum 8 characters
-            'regex:/[a-z]/', // At least one lowercase letter
+            'min:8', // Minimum 8 characters
+            /* 'regex:/[a-z]/', // At least one lowercase letter
             'regex:/[A-Z]/', // At least one uppercase letter
             'regex:/[0-9]/', // At least one digit
             'regex:/[@$!%*?&#]/', // At least one special character
